@@ -7,10 +7,10 @@ from itertools import combinations
 from matplotlib import pyplot
 
 class Solution:
-  def __init__(self, reheat = 50, num_neighbors = 0, limit_seconds = 300):
+  def __init__(self, reheat = 50, num_neighbors = 0, limit_seconds = 300, cooling_rate=0.99):
     self.num_neighbors = num_neighbors
     self.reheat = reheat
-    self.cooling_rate = 0.99
+    self.cooling_rate = cooling_rate
     self.limit_seconds = limit_seconds
 
   def read_file(self, filename):
@@ -49,7 +49,9 @@ class Solution:
     cost = 0
 
     for i in range(9):      # Get cost of repeating numbers
+      print(9-len(np.unique(array[i])))
       cost += 9-len(np.unique(array[i]))
+      print(9-len(np.unique(array[:,i])))
       cost += 9-len(np.unique(array[:,i]))
     
     return cost
@@ -146,4 +148,4 @@ class Solution:
     pyplot.savefig(filename[:-3]+"png", format="png")
     # pyplot.show()
 
-    return initial_cost, num_iterations, num_reheat, final_time
+    return initial_cost, solution_cost, num_iterations, num_reheat, final_time

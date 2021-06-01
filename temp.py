@@ -1,4 +1,6 @@
 import solution
 
 s = solution.Solution()
-print(s.cost(s.read_file("./difficulty-5/s05c-generated.txt")))
+solution, _ = s.generate_random("./difficulty-1/s01a.txt")
+print(solution)
+print(s.cost(solution))
